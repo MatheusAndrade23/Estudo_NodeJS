@@ -1,7 +1,13 @@
 // Primeiros Passos
 
+// ----- Módulos do NodeJS
+// Para mais informações, acesse https://nodejs.org/api/modules.html
+
 const http = require('http');  //Permite Manipular Servidores Locais
 const fs = require('fs');   //Permite Manipular Arquivos
+const read = require('readline') //Permite Ler Informações no Terminal
+
+// ------- 
 
 const hostname = "127.0.0.1";
 const port = 3000;   // Porta do Servidor
@@ -24,7 +30,7 @@ const server = http.createServer((req,res)=>{   //Cria servidor local
     
 })
 
-server.listen(port,hostname,()=>{  // Mostra a mensagem do "console.log" no cmd quando o servidor é inciado
+server.listen(port,hostname,()=>{  // Mostra a mensagem do "console.log" no terminal quando o servidor é inciado
 
     console.log('O servidor está funcionando!');
 })
@@ -84,18 +90,44 @@ console.log(newString);                    //Vemos as novas informações no con
 //----------- DELETANDO e RENOMEANDO ARQUIVOS ------------//
 
 // Deletando:
-//parâmetros: fs.unlink('nome do arquivo e extensão', 'CallBack');
+// parâmetros: fs.unlink('nome do arquivo e extensão', 'CallBack');
 
 fs.unlink('nome.txt',function(err){  // Neste caso, o callback é uma função que retorna "err" em caso de erro
                                     
     console.log('O arquivo foi deletado.');
 })
 
-//Renomeando:
+// Renomeando:
 
-//parâmetros: fs.rename('nome do arquivo antigo', 'nome do arquivo novo', 'Callback');
+// parâmetros: fs.rename('nome do arquivo antigo', 'nome do arquivo novo', 'Callback');
 
 fs.unlink('nome.txt','nomenovo.txt',function(err){  // Neste caso, o callback é uma função que retorna "err" em caso de erro
                                     
     console.log('O arquivo foi renomeado com sucesso.');
 })
+
+//------- LER O INPUT DO USUÁRIO NO TERMINAl --------
+
+const rl = readLine.createInterface({  // Cria a interface no Terminal
+
+    input: process.stdin,
+    output: process.stdout
+});
+
+// parâmetros: rl.question('pergunta', 'Callback');
+
+rl.question('Qual o seu nome?',function(name){ // Neste caso, o callback é uma função que retorna o que o usuário digitou
+
+    console.log("Seu nome é :"+name);
+
+    rl.question('Qual o sua idade?',function(idade){
+
+        console.log("Sua idade é :"+idade);
+    });
+});
+
+rl.on('close',function(){  // Detecta o encerramento da aplicação com o comando 'ctrl + C' e imprime "Adeus!"
+
+    console.log('Adeus!');
+    process.exit(0);
+});
