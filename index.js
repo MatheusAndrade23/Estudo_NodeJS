@@ -1,17 +1,16 @@
 // Primeiros Passos
 
 const http = require('http');  //Permite Manipular Servidores Locais
-const fs = require('fs'); //Permite Manipular Arquivos
+const fs = require('fs');   //Permite Manipular Arquivos
 
 const hostname = "127.0.0.1";
-const port = 3000; // Porta do Servidor
+const port = 3000;   // Porta do Servidor
  
-const server = http.createServer((req,res)=>{ //Cria servidor local
+const server = http.createServer((req,res)=>{   //Cria servidor local
 
-    if(req.url == '/andrade'){ // Verifica se a url de acesso é "/andrade" (http://localhost:3000/andrade)
+    if(req.url == '/andrade'){   // Verifica se a url de acesso é "/andrade" (http://localhost:3000/andrade)
 
-        fs.readFile('index.html',function(err,data){ //Mostra o arquivo index.html quando a página for aberta
-                                                                        // através do comando "node index.js" no cmd
+        fs.readFile('index.html',function(err,data){   //Mostra o arquivo index.html quando o servidor for aberto
             res.writeHead(200,{'Content-Type':'text/html'});
             res.write(data);
             return res.end()
@@ -53,4 +52,50 @@ fs.appendFile('nome.txt','adicionando conteudo', (err)=>{ //Neste caso, o callba
 
     if(err) throw err;
     console.log('Arquivo salvo com Sucesso!');
+})
+
+//----------- LER ARQUIVOS ------------//
+
+//Forma "Simples":
+
+//parâmetros: fs.readFile('nome do arquivo e extensão', 'CallBack');
+
+fs.readFile('nome.txt',function(err,data){         // Neste caso, o callback é uma função que retorna "err"
+                                                   // em caso de erro e "data", que é o conteúdo do arquivo em si
+    console.log(data.toString());                  // e deve ser convertido para String
+})
+
+//Forma "Avançada":
+
+//parâmetros: fs.readFile('nome do arquivo e extensão', 'CallBack');
+
+fs.readFile('nome.txt',function(err,data){  // Neste caso, o callback é uma função que retorna "err"
+                                            // em caso de erro e "data", que é o conteúdo do arquivo em si e deve ser convertido para String
+let string = data.toString();        
+
+let newString = string.split('a');          // Salvamos as informações do arquivo lido e demos um split() nelas
+
+console.log(newString);                    //Vemos as novas informações no console
+
+})
+
+//Assim, é perceptível que as funções "normais" do JavaScript também funcionam nesse ambiente, mostrando o poder do NodeJS
+
+//----------- DELETANDO e RENOMEANDO ARQUIVOS ------------//
+
+// Deletando:
+//parâmetros: fs.unlink('nome do arquivo e extensão', 'CallBack');
+
+fs.unlink('nome.txt',function(err){  // Neste caso, o callback é uma função que retorna "err" em caso de erro
+                                    
+    console.log('O arquivo foi deletado.');
+})
+
+//Renomeando:
+
+//parâmetros: fs.rename('nome do arquivo antigo', 'nome do arquivo novo', 'Callback');
+
+fs.unlink('nome.txt','nomenovo.txt',function(err){  // Neste caso, o callback é uma função que retorna "err" em caso de erro
+                                    
+    console.log('O arquivo foi renomeado com sucesso.');
 })
