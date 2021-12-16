@@ -1,3 +1,5 @@
+// Primeiros Passos
+
 const http = require('http');  //Permite Manipular Servidores Locais
 const fs = require('fs'); //Permite Manipular Arquivos
 
@@ -32,6 +34,7 @@ server.listen(port,hostname,()=>{  // Mostra a mensagem do "console.log" no cmd 
 
 // Primeiro modo:
 // Se o arquivo já existir, ele é reescrito!
+// O arquivo é criado no mesmo diretório do projeto
 
 //parâmetros: fs.writeFile('nome do arquivo e extensão', 'conteudo do arquivo', 'callback, caso dê certo' );
 
@@ -41,5 +44,13 @@ fs.writeFile('nome.txt','teste arquivo estudo nodeJS', function(err){ //Neste ca
     console.log('O arquivo foi um sucesso');
 })
 
+// Segundo modo:
+// Se o arquivo já existir, o conteúdo é escrito nele!
 
+//parâmetros: fs.appendFile('nome do arquivo e extensão', 'conteudo do arquivo', 'callback, caso dê certo' );
 
+fs.appendFile('nome.txt','adicionando conteudo', (err)=>{ //Neste caso, o callback é uma função arrow
+
+    if(err) throw err;
+    console.log('Arquivo salvo com Sucesso!');
+})
