@@ -26,7 +26,7 @@ const server = http.createServer((req,res)=>{   //Cria servidor local
 
     }else{
 
-        return res.end(); //Sem esse código, o servidor fica carregando para sempre, caso a url não for (http://localhost:3000/andrade)
+        return res.end(); //Sem esse código, o servidor fica carregando para sempre, caso a url não for (http://localhost:3000/nodejs)
     }
     
 })
