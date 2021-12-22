@@ -14,9 +14,10 @@ const port = 3000;   // Porta do Servidor
  
 const server = http.createServer((req,res)=>{   //Cria servidor local
 
-    if(req.url == '/andrade'){   // Verifica se a url de acesso é "/andrade" (http://localhost:3000/andrade)
+    if(req.url == '/nodejs'){   // Verifica se a url de acesso é "/andrade" (http://localhost:3000/nodejs)
 
         fs.readFile('index.html',function(err,data){   //Mostra o arquivo index.html quando o servidor for aberto
+            
             res.writeHead(200,{'Content-Type':'text/html'});
             res.write(data);
             return res.end()
