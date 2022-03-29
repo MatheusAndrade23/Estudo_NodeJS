@@ -152,19 +152,23 @@ rl.on("close", function () {
 // fs: para leitura e escrita de arquivos
 // url: para trabalhar com URLs
 
-//A flag --save-dev serve para instalar módulos somente em ambiente de desenvolvimento, como o nodemon
+// A flag --save-dev serve para instalar módulos somente em ambiente de desenvolvimento, como o nodemon
 
 // Para atualizar um módulo: npm update (para todos os módulos) ou npm update <nome> (atualizar somente um módulo escolhido)
 // Também é possível criar rotinas e scripts com o npm: nom run <script> definidos no package.json
 
 // Alguns pacotes são executáveis, assim temos que executá-las com npx.
 
-//Para remover um pacote, rodamos npm uninstall <nome>
+// Para remover um pacote, rodamos npm uninstall <nome>
 
 // Express
 
-//Para renderizar o HTML, precisamos utilizar o método sendFile precisamos do Path instalado
+// Para renderizar o HTML, precisamos utilizar o método sendFile precisamos do Path instalado
 
-//Middlewares: códigos que são executados no meio de dois processos
+// Middlewares: códigos que são executados no meio de dois processos
 
-//MVC - Uma arquitetura de software
+// Template engine: Handlebars
+// Deixa o HTML dinâmico.
+
+// {{}} - para inserir dados no html
+// Utilizamos a extensão .handlebars
